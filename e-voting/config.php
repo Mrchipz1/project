@@ -7,7 +7,7 @@ define('DB_DATABASE', 'cse');
 
 
 //replace the valid_email with a valid active gmail address
-define('SMTP_USER', 'ogbuji.bright@lmu.edu.ng');
+define('SMTP_USER', '');
 
 //replace password with the password of the same account
 define('SMTP_PASSWORD', '');
