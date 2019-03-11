@@ -13,11 +13,16 @@ session_start();
 	// functino to get a specific category in the category database
 	function get_cat_name($cat_id) {
 		$db = new dbConnect();
+		// calling the connection function from the connect.php file 
 		$conn = $db->connect();
 		try {
+			// sql query to select the category by id 
 			$stmt = $conn->prepare("SELECT * FROM category WHERE _id = :category_id");
+			// execute the prepare statement 
 			$stmt->execute(array(':category_id' => $cat_id));
+			// fetch the details 
 			$res = $stmt->fetch(PDO::FETCH_ASSOC);
+			// count and check if the data exist else if it doesnt return to the cat.php page
 			if($stmt->rowCount() > 0){
 			    return $res['cat_name'];
 			}else{
@@ -28,6 +33,7 @@ session_start();
 		}
 	}
 		
+	// function to count all the vote of a specifc contestant check the sql query	// 
 	function getcount($constId, $catId){
 		$db = new dbConnect();
 		$conn = $db->connect();
