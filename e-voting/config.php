@@ -1,10 +1,12 @@
 <?php
-
+// this is the config file for the project
 define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_DATABASE', 'cse');
 
+
+// this is the configuration for smtp so as to use and send mail
 
 //replace the valid_email with a valid active gmail address
 define('SMTP_USER', '');

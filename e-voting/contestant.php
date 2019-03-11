@@ -2,6 +2,7 @@
 session_start();
 	require_once('connect.php');
 	$db = new dbConnect();
+	// call the connect function from the connect class in the connect file
 	$conn = $db->connect();
 	function clean_input($in) {
 		// $res = mysqli_escape_string($in);
@@ -9,6 +10,7 @@ session_start();
 		$res = trim($res);
 		return $res;
 	}
+	// functino to get a specific category in the category database
 	function get_cat_name($cat_id) {
 		$db = new dbConnect();
 		$conn = $db->connect();
