@@ -1,0 +1,10 @@
+This is how it will work.
+
+Step 1:
+The voters SELECT category and the candidatae the want to vote for. 
+
+Step 2:
+The intial Vote is encrypted then UPDATED to database.
+Any-other vote is encrypted then system Get's the saved votes from the database
+Decrypt it to normal plaintext then tally it with the gotten encrypted test from the database
+Encrypt again a UPDATE db (This can be done using loop).
