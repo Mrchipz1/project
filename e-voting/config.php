@@ -9,10 +9,10 @@ define('DB_DATABASE', 'cse');
 // this is the configuration for smtp so as to use and send mail
 
 //replace the valid_email with a valid active gmail address
-define('SMTP_USER', '');
+define('SMTP_USER', 'ogbuji.bright@lmu.edu.ng');
 
 //replace password with the password of the same account
-define('SMTP_PASSWORD', '');
+define('SMTP_PASSWORD', '/.$weetboy.');
 
 // domain name
 define('HOST', '');

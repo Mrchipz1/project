@@ -22,16 +22,16 @@ class Mailing {
 		$this->mail->Password = SMTP_PASSWORD;                           // SMTP password
 		$this->mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 		$this->mail->Port = 587;
-		$this->mail->setFrom('cseweek@lmu.edu.ng', 'CSE Week Voting  - Verification Email');
+		$this->mail->setFrom('ogbuji.bright@lmu.edu.ng', 'Vote - Verification Email');
 		
 		$this->mail->addAddress($email, ''); 
    		// Add attachments
 		    // Optional name
 		$this->mail->isHTML(true);                                  // Set email format to HTML
 
-		$this->mail->Subject = 'CSE Week Voting 2018';
-		$this->mail->From = "csevote@lmu.edu.ng";
-		$this->mail->FromName = "College Of Science and Engineering";
+		$this->mail->Subject = 'Vote 2019';
+		$this->mail->From = "ogbuji.bright@lmu.edu.ng";
+		$this->mail->FromName = "Presidential Election";
 		$this->mail->Subject = "Password Token";
 		$msg = '<html>
 				  <head>

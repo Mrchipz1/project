@@ -1,9 +1,135 @@
+<?php
+session_start();
+require 'mailing.php';
+require 'hashing.php';
+require_once('connect.php');
+function clean_input($in) {
+	// $res = mysqli_escape_string($in);
+	$res = stripslashes($in);
+	$res = trim($res);
+	return $res;
+}
+$db = new dbConnect();
+$conn = $db->connect();
+
+
+
+if(isset($_POST['regno'])){
+		unset($_SESSION['message']);
+		unset($_SESSION['messages']);
+		$send_verify = new Mailing();
+		
+		function clean($text){
+			$res = trim($text);
+			$res = stripslashes($text);
+			return $res;
+		}
+
+		$regno = clean($_POST['regno']);
+
+		function check($regno){
+			$db = new dbConnect();
+			$conn = $db->connect();
+			$query = $conn->prepare("SELECT * FROM allstud WHERE regno = :regno LIMIT 1");
+			$query->execute(array(':regno' => $regno));
+			$res = $query->fetch(PDO::FETCH_ASSOC);
+			if($query->rowCount() > 0){
+			   $mail = $res['email'];
+			   $que = $conn->prepare("SELECT * FROM users WHERE regno = :regno LIMIT 1");
+			   $que->execute(array(':regno'=>$regno));
+			   $res = $que->fetch(PDO::FETCH_ASSOC);
+			   if($que->rowCount() > 0){
+			   		$mess = "info";
+	            	return $mess;
+			   }else{
+			   		$mess = $mail;
+			   		return $mess;
+			   }
+			}else{
+				$mess = NULL;
+			    return $mess;
+			}
+		}
+
+		function random_char(){
+			// where char stands for the string u want to randomize
+			$char = 'abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			$char_length = 5;
+			$cl = strlen($char);
+			$randomize = '';
+			for($i = 0; $i < $char_length; $i++ ){
+				$randomize .= $char[rand(0, $cl - 1)]; 
+			}
+			return $randomize;
+		}
+
+		$token = random_char();
+		// echo check($regno);
+
+		if(check($regno) == NULL){
+			$_SESSION['message'] = "User Does Not exist";
+			$_SESSION['messageType'] ="alert alert-danger";
+		}elseif(check($regno)== "info"){
+	        $_SESSION['message'] = "User Already exists";
+	        $_SESSION['messageType'] ="alert alert-danger";
+		}else{
+			if($send_verify->mail_verification(check($regno), $token)){
+				$stmt = $conn->prepare("INSERT INTO users (regno, email, password) VALUES (:regno, :email, :password)");
+				if($stmt->execute(array(':regno' => $regno, ':email' => check($regno), ':password' => passwordHash::hash($token)))){
+					$_SESSION['message'] = "Registered Successfully Please Check your Mail For Your Password";
+					$_SESSION['messageType'] ="alert alert-success";
+					header('location: index.php');
+				}
+			}else{
+				$_SESSION['message'] = "Baba, Park Well and Try Again";
+				$_SESSION['messageType'] ="alert alert-danger";
+				header('location: index.php');
+			}
+		}
+	}
+
+if(isset($_POST['logUser']) && isset($_POST['logPass'])) {
+	unset($_SESSION['message']);
+	unset($_SESSION['messages']);
+	// clean input\
+	$regno = clean_input($_POST['logUser']);
+	$password = clean_input($_POST['logPass']);
+	try {
+		$stmt = $conn->prepare("SELECT _id, regno, email,password FROM users WHERE (regno=:regno)"); 
+	    $stmt->bindParam(':regno', $regno);
+		$stmt->execute();
+		$res = $stmt->fetch(PDO::FETCH_ASSOC);
+    	if ( $stmt->rowCount() > 0 ) {
+    		if(passwordHash::check_password($res['password'], $password)){
+				$_SESSION['user_id'] = $res['_id'];
+	    		$_SESSION['email'] = $res['email'];
+	    		header('location:index.php');
+    		}else{
+    			$_SESSION['messages'] = "Wrong Password";
+    			$_SESSION['messageType'] = "alert alert-danger";
+	    		header('location:index.php');
+    		}
+    	} else {
+    		$_SESSION['messages'] = "Please Register First";
+    		$_SESSION['messageType'] = "alert alert-danger";
+	    	header('location:index.php');
+    	}
+	} catch (PDOException $ex) {
+		header('location:login.php');
+	}
+	
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>TVP - Online Transparent Voting Platform</title>
+    <title>Voting Platform</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Online Voting Platform">
@@ -123,7 +249,7 @@
                     <div class="col-lg-6 col-lg-offset-3 text-center">
 
                         <div class="form-sign">
-                            <form method="post">
+                            <form action ="<?Php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                                 <div class="form-head">
                                     <h3>Login</h3>
                                 </div>
@@ -134,7 +260,7 @@
 
                                     <div class="form-row">
                                         <div class="form-controls">
-                                            <input name="RegNo" placeholder="Reg No" class="field" type="text">
+                                            <input name="logUser" placeholder="Reg No" class="field" type="text">
                                         </div>
                                         <!-- /.form-controls -->
                                     </div>
@@ -142,7 +268,7 @@
 
                                     <div class="form-row">
                                         <div class="form-controls">
-                                            <input name="password" placeholder="Password" class="field" type="password">
+                                            <input name="logPass" placeholder="Password" class="field" type="password">
                                         </div>
                                         <!-- /.form-controls -->
                                     </div>
@@ -162,15 +288,15 @@
 
                                 <div class="form-foot">
                                     <div class="form-actions">
-                                        <input type="hidden" name="token" value="" />
+                                        <!-- <input type="hidden" name="token" value="" /> -->
                                         <input value="Login" class="kafe-btn kafe-btn-danger full-width" type="submit">
                                         <br></br>
-                                        
+
                                     </div>
                                     <!-- /.form-actions -->
-                                    <div class="form-head">
+                                    <!-- <div class="form-head">
                                         <a href="forgot.html" class="more-link">Forgot Password?</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <!-- /.form-foot -->
                             </form>
@@ -204,14 +330,6 @@
                         <div class="copyRightWrapper">
                             <div class="row">
 
-                                <div class="col-sm-5 col-sm-push-7 col-xs-12">
-                                    <ul class="list-inline socialLink">
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
                                 <!-- /col-sm-5 -->
 
                                 <div class="col-sm-7 col-sm-pull-5 col-xs-12">
