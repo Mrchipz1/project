@@ -269,11 +269,30 @@ li p { line-height: 24px; }
   
   padding: 13px 31px;
   color: #fff !important;
-  background: #FA5050; 
+  background: #000; 
+  letter-spacing: 1px; 
+}
+
+.kafe-btn-black{
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 13px 31px;
+  color: #fff !important;
+  background: #0000; 
   letter-spacing: 1px; 
 }
 
 .kafe-btn-danger-small{
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 11px;
+  color: #fff;
+  background: #000; 
+  letter-spacing: 1px; 
+}
+.kafe-btn-black-small{
   font-family: 'Varela Round', sans-serif;
   font-weight: 700;
   font-size: 12px;
@@ -290,7 +309,13 @@ li p { line-height: 24px; }
 }
 .kafe-btn-danger:hover, .kafe-btn-danger-small:hover {
   color: #fff !important;
-  background: #ba3434; 
+  background: #000; 
+  text-decoration: none;
+}
+
+.kafe-btn-black:hover, .kafe-btn-black-small:hover {
+  color: #fff !important;
+  background: #000; 
   text-decoration: none;
 }
 

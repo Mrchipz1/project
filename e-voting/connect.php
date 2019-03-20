@@ -1,11 +1,8 @@
 <?php
-
 //  this is a class for making the connection 
 class dbConnect {
     // a vairable where the connection would exist on 
     private $conn;
-    
-
     function __construct() {
     }
 
