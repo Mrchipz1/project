@@ -103,16 +103,16 @@ if(isset($_POST['logUser']) && isset($_POST['logPass'])) {
     		if(passwordHash::check_password($res['password'], $password)){
 				$_SESSION['user_id'] = $res['_id'];
 	    		$_SESSION['email'] = $res['email'];
-	    		header('location:index.php');
+	    		header('location:login.php');
     		}else{
     			$_SESSION['messages'] = "Wrong Password";
     			$_SESSION['messageType'] = "alert alert-danger";
-	    		header('location:index.php');
+	    		header('location:login.php');
     		}
     	} else {
     		$_SESSION['messages'] = "Please Register First";
     		$_SESSION['messageType'] = "alert alert-danger";
-	    	header('location:index.php');
+	    	header('location:login.php');
     	}
 	} catch (PDOException $ex) {
 		header('location:login.php');
@@ -278,7 +278,7 @@ if(isset($_POST['logUser']) && isset($_POST['logPass'])) {
                                         <div class="material-switch pull-left">
                                             <input id="someSwitchOptionSuccess" name="remember" type="checkbox" />
                                             <label for="someSwitchOptionSuccess" class="label-success"></label>
-                                            <span>Admin</span>
+                                            <span style="color: black;">Admin</span>
                                         </div>
                                     </div>
                                     <!-- /.form-row -->

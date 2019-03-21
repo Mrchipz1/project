@@ -74,7 +74,7 @@ session_start();
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CSE Week '18</title>
+	<title>Voting '19</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -190,7 +190,7 @@ session_start();
 		</nav>
 
 	
-	<div class="space gtco-section">
+	<!-- <div class="space gtco-section">
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
@@ -245,7 +245,7 @@ session_start();
 			</div>
 		</div>
 	</div>
-	</div>
+	</div> -->
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
