@@ -1,129 +1,3 @@
-<?php
-session_start();
-require 'mailing.php';
-require 'hashing.php';
-require_once('connect.php');
-function clean_input($in) {
-	// $res = mysqli_escape_string($in);
-	$res = stripslashes($in);
-	$res = trim($res);
-	return $res;
-}
-$db = new dbConnect();
-$conn = $db->connect();
-
-
-
-if(isset($_POST['regno'])){
-		unset($_SESSION['message']);
-		unset($_SESSION['messages']);
-		$send_verify = new Mailing();
-		
-		function clean($text){
-			$res = trim($text);
-			$res = stripslashes($text);
-			return $res;
-		}
-
-		$regno = clean($_POST['regno']);
-
-		function check($regno){
-			$db = new dbConnect();
-			$conn = $db->connect();
-			$query = $conn->prepare("SELECT * FROM allstud WHERE regno = :regno LIMIT 1");
-			$query->execute(array(':regno' => $regno));
-			$res = $query->fetch(PDO::FETCH_ASSOC);
-			if($query->rowCount() > 0){
-			   $mail = $res['email'];
-			   $que = $conn->prepare("SELECT * FROM users WHERE regno = :regno LIMIT 1");
-			   $que->execute(array(':regno'=>$regno));
-			   $res = $que->fetch(PDO::FETCH_ASSOC);
-			   if($que->rowCount() > 0){
-			   		$mess = "info";
-	            	return $mess;
-			   }else{
-			   		$mess = $mail;
-			   		return $mess;
-			   }
-			}else{
-				$mess = NULL;
-			    return $mess;
-			}
-		}
-
-		function random_char(){
-			// where char stands for the string u want to randomize
-			$char = 'abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-			$char_length = 5;
-			$cl = strlen($char);
-			$randomize = '';
-			for($i = 0; $i < $char_length; $i++ ){
-				$randomize .= $char[rand(0, $cl - 1)]; 
-			}
-			return $randomize;
-		}
-
-		$token = random_char();
-		// echo check($regno);
-
-		if(check($regno) == NULL){
-			$_SESSION['message'] = "User Does Not exist";
-			$_SESSION['messageType'] ="alert alert-danger";
-		}elseif(check($regno)== "info"){
-	        $_SESSION['message'] = "User Already exists";
-	        $_SESSION['messageType'] ="alert alert-danger";
-		}else{
-			if($send_verify->mail_verification(check($regno), $token)){
-				$stmt = $conn->prepare("INSERT INTO users (regno, email, password) VALUES (:regno, :email, :password)");
-				if($stmt->execute(array(':regno' => $regno, ':email' => check($regno), ':password' => passwordHash::hash($token)))){
-					$_SESSION['message'] = "Registered Successfully Please Check your Mail For Your Password";
-					$_SESSION['messageType'] ="alert alert-success";
-					header('location: index.php');
-				}
-			}else{
-				$_SESSION['message'] = "Baba, Park Well and Try Again";
-				$_SESSION['messageType'] ="alert alert-danger";
-				header('location: index.php');
-			}
-		}
-	}
-
-if(isset($_POST['logUser']) && isset($_POST['logPass'])) {
-	unset($_SESSION['message']);
-	unset($_SESSION['messages']);
-	// clean input\
-	$regno = clean_input($_POST['logUser']);
-	$password = clean_input($_POST['logPass']);
-	try {
-		$stmt = $conn->prepare("SELECT _id, regno, email,password FROM users WHERE (regno=:regno)"); 
-	    $stmt->bindParam(':regno', $regno);
-		$stmt->execute();
-		$res = $stmt->fetch(PDO::FETCH_ASSOC);
-    	if ( $stmt->rowCount() > 0 ) {
-    		if(passwordHash::check_password($res['password'], $password)){
-				$_SESSION['user_id'] = $res['_id'];
-	    		$_SESSION['email'] = $res['email'];
-	    		header('location:login.php');
-    		}else{
-    			$_SESSION['messages'] = "Wrong Password";
-    			$_SESSION['messageType'] = "alert alert-danger";
-	    		header('location:login.php');
-    		}
-    	} else {
-    		$_SESSION['messages'] = "Please Register First";
-    		$_SESSION['messageType'] = "alert alert-danger";
-	    	header('location:login.php');
-    	}
-	} catch (PDOException $ex) {
-		header('location:login.php');
-	}
-	
-}
-
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -227,7 +101,7 @@ if(isset($_POST['logUser']) && isset($_POST['logPass'])) {
         <div class="container">
             <div class="content">
                 <div class="row">
-                    <h1 class="revealOnScroll" data-animation="fadeInDown"> LOGIN</h1>
+                    <h1 class="revealOnScroll" data-animation="fadeInDown"> Transparent voting system (LOGIN)</h1>
                 </div>
                 <!-- /.row -->
             </div>
@@ -289,7 +163,7 @@ if(isset($_POST['logUser']) && isset($_POST['logPass'])) {
                                 <div class="form-foot">
                                     <div class="form-actions">
                                         <!-- <input type="hidden" name="token" value="" /> -->
-                                        <input value="Login" class="kafe-btn kafe-btn-danger full-width" type="submit">
+                                        <input value="Login" name="login" class="kafe-btn kafe-btn-danger full-width" type="submit">
                                         <br></br>
 
                                     </div>
