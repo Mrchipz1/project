@@ -24,7 +24,7 @@
 									<h2 class="major">PRESIDENTIAL ELECTION<br /></h2>
 									<!-- <p>face</p> -->
 									<ul class="actions">
-										<li><a href="./login.php" class="button special color1 circle icon fa-home">Home</a></li>
+										<li><a href="./signin.php" class="button special color1 circle icon fa-home">Home</a></li>
 										<li><a href="#second" class="button special color1 circle icon fa-angle-right">Next</a></li>
 										<a href="./contestant.php?cat=1"><button type="submit"> Select Candidate</button></a>
 									</ul>
