@@ -1,74 +1,3 @@
-<?php
-session_start();
-	require_once('connect.php');
-	$db = new dbConnect();
-	// call the connect function from the connect class in the connect file
-	$conn = $db->connect();
-	function clean_input($in) {
-		// $res = mysqli_escape_string($in);
-		$res = stripslashes($in);
-		$res = trim($res);
-		return $res;
-	}
-	// functino to get a specific category in the category database
-	function get_cat_name($cat_id) {
-		$db = new dbConnect();
-		// calling the connection function from the connect.php file 
-		$conn = $db->connect();
-		try {
-			// sql query to select the category by id 
-			$stmt = $conn->prepare("SELECT * FROM category WHERE _id = :category_id");
-			// execute the prepare statement 
-			$stmt->execute(array(':category_id' => $cat_id));
-			// fetch the details 
-			$res = $stmt->fetch(PDO::FETCH_ASSOC);
-			// count and check if the data exist else if it doesnt return to the cat.php page
-			if($stmt->rowCount() > 0){
-			    return $res['cat_name'];
-			}else{
-			    header('location:cat.php');
-			}
-		} catch(PDOException $ex) {
-			return NULL;
-		}
-	}
-		
-	// function to count all the vote of a specifc contestant check the sql query	// 
-	function getcount($constId, $catId){
-		$db = new dbConnect();
-		$conn = $db->connect();
-		try {
-			$stmt = $conn->prepare("SELECT * FROM vote WHERE contestant_id = :contestant_id AND category_id = :category_id");
-			$stmt->execute(array(':contestant_id' => $constId, ':category_id' => $catId));
-			$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			return $stmt->rowCount();
-		} catch(PDOException $ex) {
-			return NULL;
-		}
-	}
-	
-	//clean get data
-	if(!isset($_GET['cat'])) {echo 'GGG';	
-		$_SESSION['message'] = "Stop trying to mess around";
-		$_SESSION['messageType'] = "alert alert-danger";
-		header('location:cat.php');
-	}else{
-		$cat_id = clean_input($_GET['cat']);
-		try{
-			$stmt = $conn->prepare("SELECT * FROM contestant WHERE category_id=:category_id");
-			$res = $stmt->execute(array(':category_id' => $cat_id));
-			if($res) {
-				if($stmt->rowCount() > 0){
-					$cont = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				}
-			}
-		}catch(PDOException $ex) {
-			return NULL;
-		}
-
-	}
-?>
-
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -113,10 +42,7 @@ session_start();
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+	
 
 	</head>
 	<style type="text/css">
@@ -161,8 +87,6 @@ session_start();
 	<div class="gtco-loader"></div>
 	
 	<div id="page">
-
-	
 	<div class="page-inner">
 	<nav class="gtco-nav" role="navigation" style="background-color: rgb(43,41,44);">
 			<div class="gtco-container">
@@ -185,7 +109,7 @@ session_start();
 						</ul>
 					</div>
 				</div>
-				
+				jesuss
 			</div>
 		</nav>
 
