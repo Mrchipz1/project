@@ -68,7 +68,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">LOGO</a>
+                    <a class="navbar-brand">LOGO</a>
                 </div>
                 <!-- /.navbar-header -->
             </div>
@@ -87,6 +87,35 @@
             <div class="row">
                 <div class="Vcard">
                     <div class="Cimage">
+                        <img src= "images/m-user.png" class="img">
+                    </div>
+                    <h1></h1>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <section class="banner-login">
+        <div class="container">
+            <div class="row">
+                <div class="Vcard">
+                    <div class="Cimage">
+                        <img src= "images/m-user.png" class="img">
+                    </div>
+                    <h1></h1>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <section class="banner-login">
+        <div class="container">
+            <div class="row">
+                <div class="Vcard">
+                    <div class="Cimage">
+                        <img src= "images/w-user.png" class="img">
                     </div>
                     <h1></h1>
                 </div>
@@ -98,18 +127,38 @@
     <!-- /section -->
     <style type="text/css">
         .Vcard{
-            background:red;
+            background: ;
             width: 60%;
             height: 150px;
             margin:auto;
+            border-style: solid;
+            border-width: 5px;
             border-radius:4px;
+            margin-top: 40px;
+            
         }
         .Cimage{
-            background: black;
+            background: ;
             width: 27%;
             height:150px;
             margin-right:auto;
+            border-style: solid;
+            border-width: 5px;
+            border-left: 0px;
+            border-top: 0px;
+            padding:20px;
         }
+        .img {
+            position: relative;
+            /* width:50%;
+            height: 120px; */
+            height: 100px;
+            display: block;
+            vertical-align: middle;
+            margin: 0px auto;
+            
+        }
+
     </style>
 
     <!-- ==============================================
