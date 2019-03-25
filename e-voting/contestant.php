@@ -1,198 +1,268 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Voting '19</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-	<link rel="shortcut icon" href="images/fav.png">
+<!DOCTYPE html>
+<html lang="en">
 
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Themify Icons-->
-	<link rel="stylesheet" href="css/themify-icons.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+<head>
+    <meta charset="utf-8">
+    <title>Voting Platform</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Online Voting Platform">
+    <meta name="keywords" content="Online Voting Platform, voting ">
+    <meta name="author" content="index.html">
 
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- ==============================================
+		Favicons
+		=============================================== -->
+    <link rel="apple-touch-icon" sizes="57x57" href="source/assets/img/favicons/apple-touch-icon-57x57.html">
+    <link rel="apple-touch-icon" sizes="114x114" href="source/assets/img/favicons/apple-touch-icon-114x114.html">
+    <link rel="apple-touch-icon" sizes="72x72" href="source/assets/img/favicons/apple-touch-icon-72x72.html">
+    <link rel="apple-touch-icon" sizes="144x144" href="source/assets/img/favicons/apple-touch-icon-144x144.html">
+    <link rel="apple-touch-icon" sizes="60x60" href="source/assets/img/favicons/apple-touch-icon-60x60.html">
+    <link rel="apple-touch-icon" sizes="120x120" href="source/assets/img/favicons/apple-touch-icon-120x120.html">
+    <link rel="apple-touch-icon" sizes="76x76" href="source/assets/img/favicons/apple-touch-icon-76x76.html">
+    <link rel="apple-touch-icon" sizes="152x152" href="source/assets/img/favicons/apple-touch-icon-152x152.html">
+    <link rel="apple-touch-icon" sizes="180x180" href="source/assets/img/favicons/apple-touch-icon-180x180.html">
+    <link rel="icon" type="image/png" href="source/assets/img/favicons/favicon-96x96.html" sizes="96x96">
+    <link rel="icon" type="image/png" href="source/assets/img/favicons/favicon-16x16.html" sizes="16x16">
+    <link rel="icon" type="image/png" href="source/assets/img/favicons/favicon-32x32.html" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-TileImage" content="source/assets/img/favicons/mstile-144x144.html">
 
-	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <!-- ==============================================
+		CSS
+		=============================================== -->
+    <!-- Style-->
+    <link type="text/css" href="source/assets/css/style.css" rel="stylesheet" />
 
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+    <!-- ==============================================
+		Feauture Detection
+		=============================================== -->
+    <script src="source/assets/js/modernizr-custom.html"></script>
 
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	
+    <script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-4921714320142871",
+            enable_page_level_ads: true
+        });
+    </script>
 
-	</head>
-	<style type="text/css">
-		@media only screen and (max-width: 770px) {
-			.space {
-				margin-top: 70px !important;
-				size:5em !important;
-			}
-			.img .img-responsive {
-				width: 100%;
-			}
-			.btn-vote {
-				width: 8em !important;
-				size:3em;
-			}
-		}
-		.btn-vote {
-			background-color: transparent;
-			border-style:thick !important;
-			border:0;
-			box-shadow: inset 0 0 0 2px #F34E57;
-			/*border-color:#891434;*/
-			color: #F34E57;
-			width: 10em;
-		}
-		.btn-vote:hover {
-			background-color: transparent;
-			transition: 1s;
-			box-shadow: inset 0 0 0 2px #891434;
-			box-shadow: 5 5;
-		}
-		.btn-vote:click {
-			outline: none;
-			background-color: rgba(243,78,87,1);
-		}
-		.btn-vote:focus {
-		    outline: none;
-		}
-	</style>
-	<body>
-		
-	<div class="gtco-loader"></div>
-	
-	<div id="page">
-	<div class="page-inner">
-	<nav class="gtco-nav" role="navigation" style="background-color: rgb(43,41,44);">
-			<div class="gtco-container">
-				
-				<div class="row">
-					<div class="col-sm-4 col-xs-12">
-						<div id="gtco-logo"><a href="index.php"><img src="images/cse.png" class="animated flipInY infinite"></a></div>
-					</div>
-					<div class="col-xs-8 text-right menu-1">
-						<ul>
-							<li class="active btn-cta"><a href="./cat.php" ><span>Categories</span></a></li>
-							<?php  
-								if (isset($_SESSION['user_id'])){
-							?>
-							<li class="btn-cta"><a href="logout.php" data-tab="login"><span>Logout</span></a></li>
-							<?php 
-								}
-							?>
-							
-						</ul>
-					</div>
-				</div>
-				jesuss
-			</div>
-		</nav>
+    <link type="text/css" href="source/assets/css/login.css" rel="stylesheet" />
 
-	
-	<!-- <div class="space gtco-section">
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-					<h2><?php echo get_cat_name($cat_id); ?></h2>
-					<?php if($cat_id > 1){
-						echo '<a href="contestant.php?cat='.($cat_id-1).'" style="float: left;" class="btn-vote">Prev</a>';
-					} ?>
-					<?php if($cat_id < 18){
-						echo '<a href="contestant.php?cat='.($cat_id+1).'" style="float: right;" class="btn-vote">Next</a>';
-					} ?>
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-					<?php
-						if(isset($_SESSION['message'])) {
-							echo '<div class="'.$_SESSION['messageType'].' alert-dismissible">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								  '.$_SESSION['message'].'
-						</div>';
-						}
+</head>
 
-						unset($_SESSION['message']);
+<body>
 
-						?>
-				</div>
-			</div>
-			
-			<div class="row">
-					<?php
-						
-						foreach ($cont as $row) {
-							$numVote = getcount($row['_id'], $cat_id);
-							echo '<div class="col-lg-4 col-md-4 col-sm-6">
-							<div class="fh5co-project-item">
-						<a href="images/'.$row['image'].'" class="img img-responsive image-popup" style="background-color:lightgray;">
-							<figure>
-								<div class="overlay"><i class="ti-plus"></i></div>
-								<img src="images/'.$row['image'].'" alt="Image" class="img-responsive">
-							</figure>
-						</a>
-						<div class="fh5co-text">
-							<h2>'.$row['contestant_name'].'</h2>
-							<p>'.$row['contestant_dept'].' '.$row['contestant_level'].'</p>
-							<a href="#" /><button class="btn-vote">VOTE ('.$numVote.')</button></a>
-						</div>
-					</div>
-					</div>';
-						}
-					?>
-			</div>
-		</div>
-	</div>
-	</div> -->
+    <!-- Include navigation.php. Contains navigation content. -->
 
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
+    <!-- ==============================================
+     Navigation Section
+     =============================================== -->
+    <header class="tr-header">
+        <nav class="navbar navbar-default" style="background:#000;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">LOGO</a>
+                    <button class="btn-header" onclick="window.location.href = 'cat.php';">Return</button>
+                </div>
+                <!-- /.navbar-header -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <!-- /.navbar -->
+    </header>
+    <!-- Page Header -->
 
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- countTo -->
-	<script src="js/jquery.countTo.js"></script>
-	<!-- Magnific Popup -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
-	<!-- Main -->
-	<script src="js/main.js"></script>
 
-	</body>
+    <!-- ==============================================
+     Banner Login Section
+     =============================================== -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="box">
+                    <div class="img-box">
+                    <img src="images/m-user.png" class="img"/> 
+                    </div>
+                    <p class="box-text"> <b>Name:</b> Ogbuji Bright </p> 
+                    <p class="box-text-party"> <b>Party:</b> PDP </p>
+                    <button class="btn">Vote (0)</button>
+                </div>
+        </div>
+        <div class="row">
+                <div class="box">
+                    <div class="img-box">
+                    <img src="images/m-user.png" class="img"/> 
+                    </div>
+                    <p class="box-text"> <b>Name:</b> Ogbuji Bright </p> 
+                    <p class="box-text-party"> <b>Party:</b> PDP </p>
+                    <button class="btn">Vote (0)</button>
+                </div>
+        </div>
+        <div class="row">
+                <div class="box">
+                    <div class="img-box">
+                    <img src="images/m-user.png" class="img"/> 
+                    </div>
+                    <p class="box-text"> <b>Name:</b> Ogbuji Bright </p> 
+                    <p class="box-text-party"> <b>Party:</b> PDP </p>
+                    <button class="btn">Vote (0)</button>
+                </div>
+        </div>
+        <!-- /.container -->
+    </section>
+    
+    <!-- /section -->
+    <style type="text/css">
+        
+        .img {
+            position: relative;
+            height: 88px;
+            display: block;
+            margin: 0px auto;
+            margin-top: 29px;     
+            float: center;
+            width: 70%;
+
+        }
+
+        .box{
+            float: center;
+            height: 150px;
+            width: 80%;
+            margin: auto;
+            margin-top: 40px;
+            border: solid;
+            border-radius: 4px;
+            background:;
+        }
+
+        .img-box{
+            float: left;
+            height: auto;
+            width: 20%;
+            margin-right: auto;
+            border-right: solid;
+            border-radius: 0px;
+            background:;
+            padding:15px;
+        }
+        .box-text{
+            text-align: left;
+            padding: 10px;
+            padding-left: 220px;
+            font-size: 20px;
+            
+        }
+        .box-text-party{
+            text-align: left;
+            padding:-10px;
+            padding-left: 220px;
+            font-size:20px;
+        }
+        .btn{
+            height: 36px;
+            weight: 258px;
+            background-color: transparent;
+            border: 1px;
+            border: solid;
+            color: black;   
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 35px;
+        }
+        .btn:hover{
+            background: black;
+            color:white;
+        }
+        .btn-header{
+            margin-left: 800px; 
+            margin-top:5px; 
+            height:37px; 
+            width:214px; 
+            border-radius:2px; 
+            background: transparent; 
+            color:white;
+        }
+        .btn-header:hover{
+            background: white;
+            color: black;
+        }
+    </style>
+
+    <!-- ==============================================
+	 Footer Section
+	 =============================================== -->
+    <footer class="footerWhite">
+
+        <!-- COPY RIGHT -->
+        <div class="clearfix copyRight">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-12">
+                        <div class="copyRightWrapper">
+                            <div class="row">
+
+                                <!-- /col-sm-5 -->
+
+                                <div class="col-sm-7 col-sm-pull-5 col-xs-12">
+                                    <div class="copyRightText">
+                                        <p>Copyright © Voting&nbsp; 2019. All Rights Reserved</p>
+                                    </div>
+                                </div>
+                                <!-- /col-sm-7 -->
+
+                            </div>
+                            <!-- /row -->
+                        </div>
+                        <!-- /copyRightWrapper -->
+                    </div>
+                    <!-- /col-xs-2 -->
+
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /copyRight -->
+
+    </footer>
+
+    <a id="scrollup">Scroll</a>
+   
+    <!-- ==============================================
+	 Scripts
+	 =============================================== -->
+    <script src="source/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="source/assets/js/bootstrap.min.js"></script>
+    <script src="source/assets/js/waypoints.min.js"></script>
+    <script src="source/assets/js/jquery.easypiechart.min.js"></script>
+    <script src="source/assets/js/debunk.js"></script>
+
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '../../../www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-79656468-4', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+
 </html>
-
