@@ -120,6 +120,7 @@
     
     <!-- /section -->
     <style type="text/css">
+        
         .img {
             position: relative;
             height: 88px;
@@ -128,7 +129,7 @@
             margin-top: 29px;     
             float: center;
             width: 70%;
-        
+
         }
 
         .box{
@@ -141,7 +142,7 @@
             border-radius: 4px;
             background:;
         }
-        
+
         .img-box{
             float: left;
             height: auto;
@@ -193,7 +194,6 @@
             background: white;
             color: black;
         }
-
     </style>
 
     <!-- ==============================================
