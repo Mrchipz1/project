@@ -82,83 +82,83 @@
     <!-- ==============================================
      Banner Login Section
      =============================================== -->
-    <section class="banner-login">
+    <section>
         <div class="container">
             <div class="row">
-                <div class="Vcard">
-                    <div class="Cimage">
-                        <img src= "images/m-user.png" class="img">
+                <div class="box">
+                    <div class="img-box">
+                    <img src="images/m-user.png" class="img"/> 
                     </div>
-                    <h1></h1>
+                    <p class="box-text"> <b>Name:</b> Ogbuji Bright </p> 
+                    <p class="box-text-party"> <b>Party:</b> PDP </p>
+                    <button class="btn">Vote (0)</button>
                 </div>
-            </div>
-            <!-- /.row -->
         </div>
         <!-- /.container -->
     </section>
-    <section class="banner-login">
-        <div class="container">
-            <div class="row">
-                <div class="Vcard">
-                    <div class="Cimage">
-                        <img src= "images/m-user.png" class="img">
-                    </div>
-                    <h1></h1>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-    <section class="banner-login">
-        <div class="container">
-            <div class="row">
-                <div class="Vcard">
-                    <div class="Cimage">
-                        <img src= "images/w-user.png" class="img">
-                    </div>
-                    <h1></h1>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
+    
     <!-- /section -->
     <style type="text/css">
-        .Vcard{
-            background: ;
-            width: 60%;
-            height: 150px;
-            margin:auto;
-            border-style: solid;
-            border-width: 5px;
-            border-radius:4px;
-            margin-top: 40px;
-            
-        }
-        .Cimage{
-            background: ;
-            width: 27%;
-            height:150px;
-            margin-right:auto;
-            border-style: solid;
-            border-width: 5px;
-            border-left: 0px;
-            border-top: 0px;
-            padding:20px;
-        }
         .img {
             position: relative;
-            /* width:50%;
-            height: 120px; */
-            height: 100px;
+            height: 88px;
             display: block;
-            vertical-align: middle;
             margin: 0px auto;
-            
+            margin-top: 29px;     
+            float: center;
+            width: 70%;
+        
         }
 
+        .box{
+            float: center;
+            height: 150px;
+            width: 80%;
+            margin: auto;
+            margin-top: 40px;
+            border: solid;
+            border-radius: 4px;
+            background:;
+        }
+        
+        .img-box{
+            float: left;
+            height: auto;
+            width: 20%;
+            margin-right: auto;
+            border-right: solid;
+            border-radius: 0px;
+            background:;
+            padding:15px;
+        }
+        .box-text{
+            text-align: left;
+            padding: 10px;
+            padding-left: 220px;
+            font-size: 20px;
+            
+        }
+        .box-text-party{
+            text-align: left;
+            padding:-10px;
+            padding-left: 220px;
+            font-size:20px;
+        }
+        .btn{
+            height: 36px;
+            weight: 258px;
+            background-color: transparent;
+            border: 1px;
+            border: solid;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
     </style>
 
     <!-- ==============================================
@@ -201,7 +201,7 @@
     </footer>
 
     <a id="scrollup">Scroll</a>
-
+   
     <!-- ==============================================
 	 Scripts
 	 =============================================== -->
