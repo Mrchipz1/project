@@ -69,6 +69,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand">LOGO</a>
+                    <button class="btn-header" >Return</button>
                 </div>
                 <!-- /.navbar-header -->
             </div>
@@ -179,6 +180,20 @@
             background: black;
             color:white;
         }
+        .btn-header{
+            margin-left: 800px; 
+            margin-top:5px; 
+            height:37px; 
+            width:214px; 
+            border-radius:2px; 
+            background: transparent; 
+            color:white;
+        }
+        .btn-header:hover{
+            background: white;
+            color: black;
+        }
+
     </style>
 
     <!-- ==============================================
