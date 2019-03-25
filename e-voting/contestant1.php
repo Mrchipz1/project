@@ -94,6 +94,26 @@
                     <button class="btn">Vote (0)</button>
                 </div>
         </div>
+        <div class="row">
+                <div class="box">
+                    <div class="img-box">
+                    <img src="images/m-user.png" class="img"/> 
+                    </div>
+                    <p class="box-text"> <b>Name:</b> Ogbuji Bright </p> 
+                    <p class="box-text-party"> <b>Party:</b> PDP </p>
+                    <button class="btn">Vote (0)</button>
+                </div>
+        </div>
+        <div class="row">
+                <div class="box">
+                    <div class="img-box">
+                    <img src="images/m-user.png" class="img"/> 
+                    </div>
+                    <p class="box-text"> <b>Name:</b> Ogbuji Bright </p> 
+                    <p class="box-text-party"> <b>Party:</b> PDP </p>
+                    <button class="btn">Vote (0)</button>
+                </div>
+        </div>
         <!-- /.container -->
     </section>
     
@@ -150,14 +170,14 @@
             background-color: transparent;
             border: 1px;
             border: solid;
-            color: black;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
+            color: black;   
             display: inline-block;
             font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
+            margin: 4px 35px;
+        }
+        .btn:hover{
+            background: black;
+            color:white;
         }
     </style>
 
