@@ -1,3 +1,67 @@
+
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+    require_once('connect.php');
+    $db = new dbConnect();
+    $conn = $db->connect();
+    function clean_input($in) {
+        // $res = mysqli_escape_string($in);
+        $res = stripslashes($in);
+        $res = trim($res);
+        return $res;
+    }
+    function get_cat_name($cat_id) {
+        $db = new dbConnect();
+        $conn = $db->connect();
+        try {
+            $stmt = $conn->prepare("SELECT * FROM category WHERE _id = :category_id");
+            $stmt->execute(array(':category_id' => $cat_id));
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($stmt->rowCount() > 0){
+                return $res['cat_name'];
+            }else{
+                header('location:cat.php');
+            }
+        } catch(PDOException $ex) {
+            return NULL;
+        }
+    }
+        
+    function getcount($constId, $catId){
+        $db = new dbConnect();
+        $conn = $db->connect();
+        try {
+            $stmt = $conn->prepare("SELECT * FROM vote WHERE contestant_id = :contestant_id AND category_id = :category_id");
+            $stmt->execute(array(':contestant_id' => $constId, ':category_id' => $catId));
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->rowCount();
+        } catch(PDOException $ex) {
+            return NULL;
+        }
+    }
+    
+    //clean get data
+    if(!isset($_GET['cat'])) {echo 'GGG';   
+        $_SESSION['message'] = "Stop trying to mess around";
+        $_SESSION['messageType'] = "alert alert-danger";
+        header('location:cat.php');
+    }else{
+        $cat_id = clean_input($_GET['cat']);
+        try{
+            $stmt = $conn->prepare("SELECT * FROM contestant WHERE category_id=:category_id");
+            $res = $stmt->execute(array(':category_id' => $cat_id));
+            if($res) {
+                if($stmt->rowCount() > 0){
+                    $cont = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                }
+            }
+        }catch(PDOException $ex) {
+            return NULL;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,36 +149,25 @@
      =============================================== -->
     <section>
         <div class="container">
-            <div class="row">
-                <div class="box">
-                    <div class="img-box">
-                    <img src="images/m-user.png" class="img"/> 
+            <?php                        
+                foreach ($cont as $row) {
+                    $numVote = getcount($row['_id'], $cat_id);
+            ?>
+                <div class="row">
+                    <div class="box">
+                        <div class="img-box">
+                        <img src="images/m-user.png" class="img"/> 
+                        </div>
+                        <p class="box-text"> <b>Name:</b> <?php echo $row['contestant_name']; ?> </p> 
+                        <p class="box-text-party"> <b>Party:</b> <?php echo $row['contestant_dept']; ?></p>
+                        <a href="voteprocess.php?cat=<?php echo($_GET['cat'])?>&contestantid=<?php echo($row['_id']) ?>" />
+                            <button class="btn">Vote (<?php echo $numVote; ?>)</button>
+                        </a>
                     </div>
-                    <p class="box-text"> <b>Name:</b> Ogbuji Bright </p> 
-                    <p class="box-text-party"> <b>Party:</b> PDP </p>
-                    <button class="btn">Vote (0)</button>
                 </div>
-        </div>
-        <div class="row">
-                <div class="box">
-                    <div class="img-box">
-                    <img src="images/m-user.png" class="img"/> 
-                    </div>
-                    <p class="box-text"> <b>Name:</b> Ogbuji Bright </p> 
-                    <p class="box-text-party"> <b>Party:</b> PDP </p>
-                    <button class="btn">Vote (0)</button>
-                </div>
-        </div>
-        <div class="row">
-                <div class="box">
-                    <div class="img-box">
-                    <img src="images/m-user.png" class="img"/> 
-                    </div>
-                    <p class="box-text"> <b>Name:</b> Ogbuji Bright </p> 
-                    <p class="box-text-party"> <b>Party:</b> PDP </p>
-                    <button class="btn">Vote (0)</button>
-                </div>
-        </div>
+            <?php
+                }
+            ?>
         <!-- /.container -->
     </section>
     

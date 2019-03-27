@@ -1,11 +1,12 @@
 <?php 
 /* Main page with two forms: sign up and log in */
-require 'config.php';
-session_start();
+// require 'config.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
 ?>
 <?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-{
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['login'])) { //user logging in
 
         require 'login.php';

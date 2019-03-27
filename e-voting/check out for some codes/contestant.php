@@ -114,7 +114,7 @@
 		</nav>
 
 	
-	<!-- <div class="space gtco-section">
+<div class="space gtco-section">
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
@@ -169,7 +169,7 @@
 			</div>
 		</div>
 	</div>
-	</div> -->
+	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
