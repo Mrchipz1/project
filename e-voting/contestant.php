@@ -33,15 +33,20 @@ if (session_status() == PHP_SESSION_NONE) {
         $db = new dbConnect();
         $conn = $db->connect();
         try {
-            $stmt = $conn->prepare("SELECT * FROM vote WHERE contestant_id = :contestant_id AND category_id = :category_id");
-            $stmt->execute(array(':contestant_id' => $constId, ':category_id' => $catId));
-            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $stmt->rowCount();
+            require_once('enc.php');
+            $enc = new enchandler();
+            $stmt = $conn->prepare("SELECT * FROM contestant WHERE contestantid=:contestant_id");
+            $stmt->execute(array(':contestant_id' => $constId));
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            $newcount = $enc->decryptIt($res['votes']);
+            return $newcount;
         } catch(PDOException $ex) {
             return NULL;
         }
     }
     
+   
+
     //clean get data
     if(!isset($_GET['cat'])) {echo 'GGG';   
         $_SESSION['message'] = "Stop trying to mess around";
